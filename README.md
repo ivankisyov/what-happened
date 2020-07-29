@@ -1,5 +1,7 @@
 # What-Happened
 
+Check the app [here](https://what-happened-91868.web.app/)
+
 ## Main Objective:
 
 Record daily events, which in someway you find useful, either good or bad or...
