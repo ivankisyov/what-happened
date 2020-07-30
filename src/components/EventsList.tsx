@@ -24,9 +24,9 @@ function EventsList() {
       one!
     </Alert>
   ) : (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} justify="center" alignItems="stretch">
       {events.map((event) => (
-        <Grid item xs={12} sm={6} lg={3} key={event.id}>
+        <Grid item container xs={12} sm={6} lg={4} key={event.id}>
           <Event event={event} />
         </Grid>
       ))}

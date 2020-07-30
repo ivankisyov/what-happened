@@ -38,7 +38,9 @@ type tagColors =
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      maxWidth: 345,
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
     },
     tagIcon: {
       color: blue[500],
@@ -87,8 +89,10 @@ export default function Event({ event }: IEventProps) {
           title={event.title}
           subheader={<DateBox date={event.creationDate} />}
         />
-        <CardContent>
-          <Typography className="mb-3">{event.description}</Typography>
+        <CardContent className="flex-grow-1 d-flex flex-column">
+          <Typography className="mb-3 flex-grow-1">
+            {event.description}
+          </Typography>
           <Divider />
         </CardContent>
         <CardActions>
