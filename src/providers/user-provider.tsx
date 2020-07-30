@@ -19,7 +19,6 @@ class UserProvider extends Component {
   };
   render() {
     return (
-      //   <UserContext.Provider value={{ user: this.state.user }}>
       // @ts-ignore
       <UserContext.Provider value={this.state.user}>
         {this.props.children}

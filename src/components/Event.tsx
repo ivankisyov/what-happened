@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { blue } from "@material-ui/core/colors";
 import { Tags } from "../enums/tags.enum";
 import DateBox from "./DateBox";
@@ -21,6 +22,8 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import EventForm from "./EventForm";
+import { eventsRef } from "../firebase";
+import orange from "@material-ui/core/colors/orange";
 
 export interface IEventProps {
   event: IEvent;
@@ -56,6 +59,12 @@ const useStyles = makeStyles((theme: Theme) =>
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
+    actionButton: {
+      minWidth: "35px",
+    },
+    deleteIcon: {
+      color: orange[500],
+    },
   })
 );
 
@@ -82,6 +91,12 @@ export default function Event({ event }: IEventProps) {
     setModalOpened(false);
   };
 
+  const deleteEvent = () => {
+    if (window.confirm(`Are you sure you want to delete: ${event.title}?`)) {
+      eventsRef.doc(event.id).delete();
+    }
+  };
+
   return (
     <>
       <Card className={classes.root} variant="outlined">
@@ -106,7 +121,18 @@ export default function Event({ event }: IEventProps) {
               {event.tag}
             </Typography>
           </div>
-          <Button size="small" onClick={(e) => handleModalOpen()}>
+          <Button
+            className={classes.actionButton}
+            size="small"
+            onClick={() => deleteEvent()}
+          >
+            <DeleteIcon className={classes.deleteIcon} />
+          </Button>
+          <Button
+            className={classes.actionButton}
+            size="small"
+            onClick={() => handleModalOpen()}
+          >
             <EditIcon color="primary" />
           </Button>
         </CardActions>
